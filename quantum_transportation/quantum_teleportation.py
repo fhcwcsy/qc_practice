@@ -8,6 +8,10 @@ qk.IBMQ.load_account()
 
 print('getting provider...')
 provider = qk.IBMQ.get_provider(hub='ibm-q')
+
+# use NTU hub
+
+
 # for be in provider.backends():
     # print(be)
 
