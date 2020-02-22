@@ -127,7 +127,7 @@ def ibm_sim():
     
     print('preparing backend...')
     backend = qk.providers.ibmq.least_busy(provider.backends(filters=
-        lambda b: b.configuration().n_qubits >- 3 and
+        lambda b: b.configuration().n_qubits >= 3 and
         not b.configuration().simulator and b.status().operational==True))
 
     print('using backend:', backend)

@@ -1,4 +1,7 @@
 import qiskit as qk
+import sys
+sys.path.append('../')
+import simulation as sim
 
 shots = 256
 bits = '01'
@@ -43,43 +46,9 @@ def build_circuit():
 
     return qc
 
-def local_sim(qc):
-    print('Simulation started.')
-    backend = qk.Aer.get_backend('qasm_simulator') 
-    job_sim = qk.execute(qc, backend)
-    sim_result = job_sim.result()
-    print('Simulation finished.')
-
-    measurement_result = sim_result.get_counts(qc)
-    print('Simulation result:', measurement_result)
-    qk.visualization.plot_histogram(measurement_result).savefig('local_sim.png')
-    print('Simulation plotted and saved locally.')
-
-def leastBusy_device_exp(qc):
-    print('Experiment started.')
-    print('Loading account...')
-    qk.IBMQ.load_account()
-    print('Account loaded')
-    print('Finding backend...')
-    provider = qk.IBMQ.get_provider(hub='ibm-q')
-    backend = qk.providers.ibmq.least_busy(provider.backends(filters=lambda x:
-        x.configuration().n_qubits >= 2 and
-        not x.configuration().simulator and 
-        x.status().operational==True))
-    print('Using backend:', backend)
-    print('Job started.')
-    job = qk.execute(qc, backend=backend, shots=shots)
-    qk.tools.monitor.job_monitor(job)
-    result = job.result()
-    result_count = result.get_counts()
-    print('Result:', result_count)
-    qk.visualization.plot_histogram(result_count).savefig('exp_result.png')
-    print('Result plotted and saved locally.')
-    accuracy = result_count[bits]/float(shots)
-    print('Accuracy:', accuracy)
-
-        
+def accuracy(result_count):
+    return result_count[bits]/float(shots)
 
 if __name__ == "__main__":
-    leastBusy_device_exp(build_circuit())
+    sim.leastBusy_device_exp(build_circuit(), shots=shots, accuracy_func=accuracy)
     
