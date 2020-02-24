@@ -59,4 +59,4 @@ def build_circuit():
     return djcircuit
 
 if __name__ == "__main__":
-    sim.leastBusy_device_exp(build_circuit())
+    sim.quantumComputerExp(build_circuit())
