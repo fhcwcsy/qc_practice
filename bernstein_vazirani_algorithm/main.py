@@ -3,8 +3,8 @@ import sys
 sys.path.append('../')
 import simulation as sim
 
-nQubits = 10 # length of s
-s = int('1110110101', 2) # the hidden integer (s)
+nQubits = 2 # length of s
+s = int('10', 2) # the hidden integer (s)
 barriers = True
 shots = 1024
 
