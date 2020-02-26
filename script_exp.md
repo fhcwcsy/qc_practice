@@ -4,7 +4,8 @@ Hao-Chien Wang
 
 In this file, I share some tips to avoid errors while running qiskit in a `*.py`
 file. My environment is Ubuntu 19.10 running Anaconda, but I believe this can
-be done on other OS as well. If you still encounter problems after following this,
+be done on other OS as well. My scripts can be found in this [repo](https://github.com/fhcwcsy/quantum_computing_practice).
+If you still encounter problems after following this,
 feel free to tell me the error messages and I'll try to help.
 
 1. Copy your API token from your [IBM-Q Experience account page](https://quantum-computing.ibm.com/account).
