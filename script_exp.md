@@ -27,7 +27,7 @@ you need to use `qikit.IBMQ.load_account()` before that.
 can simply ignore those commands. 
 
 - Functions like `qk.visualization.plot_histogram()` or `qc.draw(output='mpl')`
-returns PLT images. You can use `plt_images.show()` to show it (but the program
+return Figure objects. You can use `plt_images.show()` to show it (but the program
 will pause) or use `plt_images.savefig('some/path/filename.svg')` to save it
 locally (you can use other image extensions as well).
 
