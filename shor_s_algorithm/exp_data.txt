@@ -1,0 +1,51 @@
+
+
+
+Record start
+Time: 2020-03-05 18:56:47
+Backend: ibmq_boeblingen
+Qubits: 20
+Basis gates: u1, u2, u3, cx, id
+Max shots: 8192
+creg size: 3
+qreg size: 6
+
+000: 143
+001: 75
+010: 175
+011: 131
+100: 134
+101: 84
+110: 154
+111: 128
+
+Record end
+
+
+
+
+
+
+Record start
+Time: 2020-03-05 19:06:46
+Backend: ibmq_boeblingen
+Qubits: 20
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 6
+
+000: 1112
+001: 987
+010: 995
+011: 972
+100: 1151
+101: 975
+110: 1091
+111: 909
+
+Record end
+
+
+

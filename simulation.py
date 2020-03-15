@@ -18,17 +18,18 @@ def local_sim(qc, figname='local_sim.svg', printresult=True, shots=1024):
     return measurement_result
 
 def quantumComputerExp(qc, figname='exp_result.svg', accuracy_func=None,
-        usehub='ibm-q', shots=1024, mode='least_busy', printresult=True, commentstr=None):
+        shots=1024, mode='least_busy', printresult=True, commentstr=None):
 
     print('Experiment started.')
     print('Loading account...')
     account = qk.IBMQ.load_account()
+    ntu_provider = qk.IBMQ.get_provider(hub='ibm-q-hub-ntu', group='ntu-internal',
+            project='default')
     print('Account loaded')
 
     if mode == 'least_busy':
         print('Finding backend...')
-        provider = qk.IBMQ.get_provider(hub=usehub)
-        backend = qk.providers.ibmq.least_busy(provider.backends(filters=lambda x:
+        backend = qk.providers.ibmq.least_busy(ntu_provider.backends(filters=lambda x:
             x.configuration().n_qubits >= qc.qregs[0].size and
             not x.configuration().simulator and 
             x.status().operational==True))
@@ -55,7 +56,7 @@ def quantumComputerExp(qc, figname='exp_result.svg', accuracy_func=None,
     # sort result
     bitlen = qc.cregs[0].size
     result_list = [('{b:0{l}b}'.format(b=i, l=bitlen), 
-        result.get('{b:0{l}b}'.format(b=i, l=bitlen), 0)) for i in range(2**bitlen)]
+        result_count.get('{b:0{l}b}'.format(b=i, l=bitlen), 0)) for i in range(2**bitlen)]
     
     with open('exp_data.txt', 'a') as f:
         f.write('\n\n\n')
@@ -64,11 +65,11 @@ def quantumComputerExp(qc, figname='exp_result.svg', accuracy_func=None,
         f.write('Backend: '+backend._configuration.backend_name+'\n')
         f.write('Qubits: '+str(backend._configuration.n_qubits)+'\n')
         f.write('Basis gates: '+', '.join(backend._configuration.basis_gates)+'\n')
+        f.write('Shots: '+str(shots)+'\n')
         f.write('Max shots: '+str(backend._configuration.max_shots)+'\n')
         f.write('creg size: '+str(qc.cregs[0].size)+'\n')
         f.write('qreg size: '+str(qc.qregs[0].size)+'\n')
         f.write('\n')
-        result_list = _sortresult(result_count)
         for b, c in result_list:
             f.write(b+': '+str(c)+'\n')
         f.write('\n')
@@ -76,3 +77,16 @@ def quantumComputerExp(qc, figname='exp_result.svg', accuracy_func=None,
         f.write('\n\n\n')
 
     return result_count
+
+
+def sort_by_key(result):
+    bitlen = len(next(iter(result.keys())))
+    sorted_result = [('{n:0{b}b}'.format(n=i, b=bitlen), 
+        result.get('{n:0{b}b}'.format(n=i, b=bitlen), 0)) 
+        for i in range(2**bitlen)]
+    return sorted_result
+
+def sort_by_prob(result):
+    return sorted([(k, result[k]) for k in result.keys()], key=lambda x: x[1], 
+            reverse=True)
+

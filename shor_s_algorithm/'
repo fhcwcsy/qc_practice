@@ -1,0 +1,36 @@
+import qiskit as qk
+import sys
+import qft
+import beauregard_modular_adder as adder
+sys.path.append('../')
+import simulation as sim
+
+def cmult_a_mod_N(bitlen, a, N):
+    qreg = qk.QuantumRegister(2*bitlen+2) # control, x, b, ancilla
+    qc = qk.QuantumCircuit(qreg)
+    x_msb = 1
+    b_msb = bitlen+1
+    ancilla = 2*bitlen+1
+
+    # prepare gates
+    qft_gate = qft.qft(bitlen)
+    adder.cc_phi_add_a_mod_N(bitlen, a, N)
+
+    qc.append(qft_gate, qargs=qreg[b_msb:ancilla])
+
+    for i in range(bitlen):
+        qc.append(adder.cc_phi_add_a_mod_N(bitlen, 2**i * a, N), 
+                qargs=[qreg[0]]+[qreg[i+1]]+qreg[b_msb:])
+
+    qc.append(qft_gate.inverse(), qargs=qreg[b_msb:ancilla])
+
+    qc.draw(output='mpl').savefig('cmult.svg')
+
+    gate = qc.to_gate()
+    gate.name = 'cmult{a}mod{N}'
+    
+    return
+
+if __name__ == "__main__":
+    cmult_a_mod_N(5, 3, 7)
+
