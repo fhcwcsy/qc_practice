@@ -1,6 +1,7 @@
 import qiskit as qk
 import time
 import matplotlib.pyplot as plt
+import os
 
 def local_sim(qc, figname='local_sim.svg', printresult=True, shots=1024):
     print('Local simulation started.')
@@ -18,17 +19,21 @@ def local_sim(qc, figname='local_sim.svg', printresult=True, shots=1024):
     return measurement_result
 
 def quantumComputerExp(qc, figname='exp_result.svg', accuracy_func=None,
-        shots=1024, mode='least_busy', printresult=True, commentstr=None):
+        shots=1024, mode='least_busy', printresult=True, commentstr=None, 
+        verbose=True):
 
-    print('Experiment started.')
-    print('Loading account...')
+    if verbose:
+        print('Experiment started.')
+        print('Loading account...')
     account = qk.IBMQ.load_account()
     ntu_provider = qk.IBMQ.get_provider(hub='ibm-q-hub-ntu', group='ntu-internal',
             project='default')
-    print('Account loaded')
+    if verbose:
+        print('Account loaded')
 
     if mode == 'least_busy':
-        print('Finding backend...')
+        if verbose:
+            print('Finding backend...')
         backend = qk.providers.ibmq.least_busy(ntu_provider.backends(filters=lambda x:
             x.configuration().n_qubits >= qc.qregs[0].size and
             not x.configuration().simulator and 
@@ -40,10 +45,13 @@ def quantumComputerExp(qc, figname='exp_result.svg', accuracy_func=None,
     else:
         raise Exception('InvalidExpMode')
 
-    print('Using backend:', backend)
-    print('Job started.')
+    if verbose:
+        print('Using backend:', backend)
+        print('Job started.')
     job = qk.execute(qc, backend=backend, shots=shots)
-    qk.tools.monitor.job_monitor(job)
+    if verbose:
+        qk.tools.monitor.job_monitor(job)
+        print('done')
     result = job.result()
     result_count = result.get_counts()
 
@@ -58,9 +66,12 @@ def quantumComputerExp(qc, figname='exp_result.svg', accuracy_func=None,
     result_list = [('{b:0{l}b}'.format(b=i, l=bitlen), 
         result_count.get('{b:0{l}b}'.format(b=i, l=bitlen), 0)) for i in range(2**bitlen)]
     
+    if verbose:
+        print('writing log')
     with open('exp_data.txt', 'a') as f:
         f.write('\n\n\n')
         f.write('Record start\n')
+        f.write('file: '+os.path.basename(__file__)+'\n')
         f.write('Time: '+time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())+'\n')
         f.write('Backend: '+backend._configuration.backend_name+'\n')
         f.write('Qubits: '+str(backend._configuration.n_qubits)+'\n')
@@ -76,6 +87,9 @@ def quantumComputerExp(qc, figname='exp_result.svg', accuracy_func=None,
         f.write('Record end\n')
         f.write('\n\n\n')
 
+    
+    if verbose:
+        print('returning result')
     return result_count
 
 

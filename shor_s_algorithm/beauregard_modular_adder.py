@@ -35,7 +35,7 @@ def cc_phi_add_a_mod_N(bitlen, a, N):
     qc.append(cc_phi_add_a, qargs=qreg[:-1])
 
     qc.draw(output='mpl').savefig('cc_phi_add_mod_N_circuit.svg')
-    # print(qc.draw())
+    print(qc.draw())
     gate = qc.to_gate()
     gate.name = f'ccPhiAdd{a}Mod{N}'
     return gate
