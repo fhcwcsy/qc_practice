@@ -7,9 +7,10 @@ sys.path.append('../')
 import simulation as sim
 
 def cc_phi_add_a_mod_N(bitlen, a, N):
-    # gargs: c, c, x[bitlen], ancilla
+    # qargs: c, c, x[bitlen], ancilla
 
     a = a % N
+
     qreg = qk.QuantumRegister(bitlen+3) 
     qc = qk.QuantumCircuit(qreg)
     ancilla = bitlen+2
@@ -35,14 +36,13 @@ def cc_phi_add_a_mod_N(bitlen, a, N):
     qc.append(cc_phi_add_a, qargs=qreg[:-1])
 
     qc.draw(output='mpl').savefig('cc_phi_add_mod_N_circuit.svg')
-    print(qc.draw())
     gate = qc.to_gate()
     gate.name = f'ccPhiAdd{a}Mod{N}'
     return gate
 
 
-def demonstrating_cc_phi_add_a_mod_N(a, b, N, control='11', simulation='local'):
-    bitlen = math.ceil(math.log2(max(a+1, b+1)))+1
+def demonstrating_cc_phi_add_a_mod_N(a, b, N, control='11', simulation='sim'):
+    bitlen = math.ceil(math.log2(N+1))+1
     print(f'bitlen: {bitlen}')
     modadd = cc_phi_add_a_mod_N(bitlen, a, N)
     qft_gate = qft.qft(bitlen)
@@ -65,9 +65,8 @@ def demonstrating_cc_phi_add_a_mod_N(a, b, N, control='11', simulation='local'):
     qc.append(qft_gate.inverse(), qargs=qc.qregs[0][2:bitlen+2])
     for i in range(bitlen):
         qc.measure(i+2, bitlen-i-1)
-    # print(qc.draw())
     
-    if simulation == 'local':
+    if simulation == 'sim':
         ans = int(sim.sort_by_prob(sim.local_sim(qc, printresult=False))[0][0], 2)
         print(f'{a}+{b} mod {N} = {ans}, control: {control}')
         print('actual ans:', (a+b)%N)
@@ -82,7 +81,7 @@ def demonstrating_cc_phi_add_a_mod_N(a, b, N, control='11', simulation='local'):
 
 
 if __name__ == "__main__":
-    demonstrating_cc_phi_add_a_mod_N(5, 5, 7, control='11', simulation='local')
+    demonstrating_cc_phi_add_a_mod_N(8, 5, 9, control='11', simulation='sim')
     # cc_phi_add_mod_N(4, 2, 5)
 
 

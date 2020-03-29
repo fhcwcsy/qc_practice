@@ -19,7 +19,7 @@ def local_sim(qc, figname='local_sim.svg', printresult=True, shots=1024):
     return measurement_result
 
 def quantumComputerExp(qc, figname='exp_result.svg', accuracy_func=None,
-        shots=1024, mode='least_busy', printresult=True, commentstr=None, 
+        shots=8192, mode='least_busy', printresult=True, commentstr=None, 
         verbose=True):
 
     if verbose:
@@ -68,7 +68,7 @@ def quantumComputerExp(qc, figname='exp_result.svg', accuracy_func=None,
     
     if verbose:
         print('writing log')
-    with open('exp_data.txt', 'a') as f:
+    with open('exp_data.log', 'a') as f:
         f.write('\n\n\n')
         f.write('Record start\n')
         f.write('file: '+os.path.basename(__file__)+'\n')

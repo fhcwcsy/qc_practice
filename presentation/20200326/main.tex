@@ -21,7 +21,7 @@
 \usefonttheme[onlymath]{serif} 
 \setbeamertemplate{bibliography item}{\insertbiblabel} 
 
-\title{Modular Multiplier Implementation}
+\title[Quantum Adder and Modular Adder]{Implementations of Quantum Adders and Quantum Modular Adders}
 \author{Hao-Chien Wang}
 \institute[NTUPhys]{Department of Physics, National Taiwan University}
 
@@ -51,6 +51,46 @@
 	\scriptsize{\url{https://github.com/fhcwcsy/qc_practice/tree/master/shor_s_algorithm}}
 \end{frame}
 
+
+\begin{frame}{Eigenvalues and Eigenvectors of $U_a$}
+	\begin{equation*}
+		U \ket{u_s} = e^{\frac{2\pi i s}{r}} \ket{u_s}
+	\end{equation*}
+	\begin{equation*}
+		\ket{u_s} = \frac{1}{\sqrt{r}} \sum_{k=0}^{r-1} 
+		e^{\frac{-2\pi i sk}{r}} \ket{x^k \mod N}
+	\end{equation*}
+	It can be proved that
+	\begin{equation*}
+		\frac{1}{\sqrt{r}} \sum_{t=0}^{r-1} \ket{u_t} = \ket{1}
+	\end{equation*}
+	Therefore, we estimate the eigenvalues to obtain $\frac{s}{r}$.
+\end{frame}
+
+\begin{frame}{Proof: Eigenvalues and Eigenvectors}
+	\begin{align*}
+		U \ket{u_s} &= U \frac{1}{\sqrt{r}} \sum_{k=0}^{r-1} e^{\frac{-2\pi i sk}{r}} 
+		\ket{x^k \mod N}\\
+		&= \frac{1}{\sqrt{r}} \sum_{k=0}^{r-1} e^{\frac{-2\pi i sk}{r}} 
+		\ket{x^{k+1} \mod N}\\
+		&= \frac{1}{\sqrt{r}} \sum_{k=0}^{r-1} e^{\frac{-2\pi i s(k-1)}{r}} 
+		\ket{x^k \mod N}\\
+		&= e^{\frac{2 \pi is}{r}} \ket{u_s}
+	\end{align*}
+\end{frame}
+
+\begin{frame}{Proof: Sum of Eigenvectors is $\ket{1}$}
+	\begin{align*}
+		\frac{1}{\sqrt{r}} \sum_{t=0}^{r-1} \ket{u_t} &= \frac{1}{\sqrt{r}}
+		\sum_{t=0}^{r-1} \frac{1}{\sqrt{r}} \sum_{k=0}^{r-1} 
+		e^{\frac{-2\pi i tk}{r}}\ket{x^k \mod N}\\
+		&= \frac{1}{r} \sum_{k=0}^{r-1} \left( \sum_{t=0}^{r-1} 
+		e^{\frac{-2\pi i tk}{r}}\right) \ket{x^k \mod N}\\
+		&= \frac{1}{r} \sum_{k=0}^{r-1} \left(\delta_{k, 0} r \right) \ket{x^k \mod N}\\
+		&= \ket{1}
+	\end{align*}
+\end{frame}
+
 \section{Draper's adder}%
 \label{sec:draper_s_adder}
 
@@ -66,6 +106,15 @@
 	\begin{equation*}
 		\frac{a}{2^k} = 0.a_k a_{k-1} \cdots a_2 a_1
 	\end{equation*}
+	\begin{equation*}
+		R_k = 
+		\begin{pmatrix}
+			1 & 0 & 0 & 0 \\
+			0 & 1 & 0 & 0 \\
+			0 & 0 & 1 & 0 \\
+			0 & 0 & 0 & e\left( \frac{1}{2^k} \right)\\
+		\end{pmatrix}
+	\end{equation*}
 	
 	QFT:
 	\begin{equation*}
@@ -75,6 +124,13 @@
 	\end{equation*}
 
 	
+\end{frame}
+
+\begin{frame}{QFT Circuit}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=\linewidth]{./qft.png}
+	\end{figure}
 \end{frame}
 
 \begin{frame}{Tracing QFT}
@@ -93,6 +149,10 @@
 \end{frame}
 
 \begin{frame}{Draper's Fourier Adder}
+	\begin{equation*}
+		\ket{\phi(a)} \to \ket{\phi (a+b) }
+	\end{equation*}
+	
 	\begin{figure}[h]
 		\centering
 		\includegraphics[width=\linewidth]{./draper.png}
@@ -105,16 +165,16 @@
 		\ket{\phi_n (a)}
 		\xrightarrow{C_{b_n}-R_1}& 
 		\frac{1}{\sqrt{2}} \Bigg(
-		\ket{0} + \Big[  e(0.a_n a_{n-1} \cdots a_1) + e(0.b_n)\Big] \ket{1}
+		\ket{0} + \Big[  e(0.a_n a_{n-1} \cdots a_1 + 0.b_n)\Big] \ket{1}
 		\Bigg)\\
 		\xrightarrow{C_{b_{n-1}}-R_2}& 
 		\frac{1}{\sqrt{2}} \Bigg(
-		\ket{0} + \Big[  e(0.a_n a_{n-1} \cdots a_1) + e(0.b_n b_{n-1})\Big] \ket{1}
+		\ket{0} + \Big[  e(0.a_n a_{n-1} \cdots a_1 + 0.b_n b_{n-1})\Big] \ket{1}
 		\Bigg)\\
 		&\quad\quad\quad\quad\quad\vdots\\
 		\xrightarrow{C_{b_1}-R_n}& 
 		\frac{1}{\sqrt{2}} \Bigg(
-			\ket{0} + \Big[  e(0.a_n a_{n-1} \cdots a_1) + e(0.b_n b_{n-1} \cdots b_1)\Big] \ket{1}
+			\ket{0} + \Big[  e(0.a_n a_{n-1} \cdots a_1 + 0.b_n b_{n-1} \cdots b_1)\Big] \ket{1}
 		\Bigg)\\
 		&= \ket{\phi_n (a+b) }
 	\end{align*}
@@ -134,11 +194,31 @@
 \label{sec:beauregard_s_modular_adder}
 
 \begin{frame}{Beauregard's Modular Adder}
+	\begin{equation*}
+		\Phi ADD(a)MOD(N) \ket{\phi(b \mod N)} = \ket{\phi (a+b \mod N)}
+	\end{equation*}
+	
 	\begin{itemize}
-		\item Use 2 controls (1 for $C-U_a$, 1 for building modular multipler).
-		\item 1 ancilla qubit (must be cleared).
-		\item Use one more qubit to store $a$ to prevent overflow and detect sign.
+		\item Qubits
+		\begin{itemize}
+			\item Use 2 controls (1 for $C-U_a$, 1 for building modular multipler).
+			\item 1 ancilla qubit (must be cleared).
+			\item Use one more qubit to store $a$ to prevent overflow and detect
+				sign (check MSB).
+		\end{itemize}
 		\item Adding numbers larger than $N$ can be reduced.
+		\item Steps:
+		\begin{enumerate}
+			\item Add $a$
+			\item Subtract $N$
+			\item Convert to Computational basis, check MSB. Add $N$ back if
+				MSB is 1.
+			\item Clear the ancilla bit using
+				\begin{equation*}
+					a+b\mod N \geq a \Longleftrightarrow a+b < N
+				\end{equation*}
+				
+		\end{enumerate}
 	\end{itemize}
 	
 \end{frame}
@@ -157,10 +237,20 @@
 	\end{figure}
 \end{frame}
 
-\section{Demonstration}%
-\label{sec:demonstration}
+\section{Implementation}%
+\label{sec:implementation}
 
-\begin{frame}{title}
+\begin{frame}{Implementation}
+	\begin{itemize}
+		\item Currently complete:
+			\begin{itemize}
+				\item Adder
+				\item Modular adder
+				\item Modular Multiplier
+			\end{itemize}
+		\item Obstacle: the circuit is too big to get the correct result using
+			real device.
+	\end{itemize}
 	
 \end{frame}
 
@@ -178,6 +268,5 @@
 	
 \end{thebibliography}
 \end{frame} 
-
 
 \end{document}

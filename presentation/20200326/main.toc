@@ -1,5 +1,5 @@
 \beamer@sectionintoc {1}{Introduction}{3}{0}{1}
-\beamer@sectionintoc {2}{Draper's adder}{4}{0}{2}
-\beamer@sectionintoc {3}{Beauregard's modular adder}{8}{0}{3}
-\beamer@sectionintoc {4}{Demonstration}{11}{0}{4}
-\beamer@sectionintoc {5}{References}{11}{0}{5}
+\beamer@sectionintoc {2}{Draper's adder}{7}{0}{2}
+\beamer@sectionintoc {3}{Beauregard's modular adder}{13}{0}{3}
+\beamer@sectionintoc {4}{Implementation}{16}{0}{4}
+\beamer@sectionintoc {5}{References}{17}{0}{5}
