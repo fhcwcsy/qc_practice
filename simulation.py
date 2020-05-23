@@ -2,6 +2,7 @@ import qiskit as qk
 import time
 import matplotlib.pyplot as plt
 import os
+import __main__
 
 def local_sim(qc, figname='local_sim.svg', printresult=True, shots=1024):
     print('Local simulation started.')
@@ -18,9 +19,24 @@ def local_sim(qc, figname='local_sim.svg', printresult=True, shots=1024):
 
     return measurement_result
 
-def quantumComputerExp(qc, figname='exp_result.svg', accuracy_func=None,
-        shots=8192, mode='least_busy', printresult=True, commentstr=None, 
-        verbose=True):
+def quantumComputerExp(qc, backend=None, shots=8192, 
+        mode='least_busy', verbose=True, loopexp=1, printresult=True,
+        layout=None, optimize=None, note=None, accuracy_func=None):
+
+    timestart = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())
+    shorttime = time.strftime("%Y%m%d%H%M%S",time.localtime())
+
+    if loopexp < 1:
+        raise ValueError('Number of loop mus be larger or equal to 1.')
+
+    if loopexp > 1:
+        indent = '    |   '
+    else: 
+        indent = ''
+
+    overall_result = {}
+
+    neatfilename = os.path.splitext(os.path.split(__main__.__file__)[1])[0]
 
     if verbose:
         print('Experiment started.')
@@ -31,62 +47,136 @@ def quantumComputerExp(qc, figname='exp_result.svg', accuracy_func=None,
     if verbose:
         print('Account loaded')
 
-    if mode == 'least_busy':
+    if backend != None:
+        _backend = ntu_provider.get_backend(backend)
+
+    elif mode == 'least_busy':
         if verbose:
             print('Finding backend...')
-        backend = qk.providers.ibmq.least_busy(ntu_provider.backends(filters=lambda x:
+        _backend = qk.providers.ibmq.least_busy(ntu_provider.backends(filters=lambda x:
             x.configuration().n_qubits >= qc.qregs[0].size and
             not x.configuration().simulator and 
             x.status().operational==True))
 
     elif mode == 'simulate':
-        backend = account.get_backend('ibmq_qasm_simulator') 
+        _backend = account.get_backend('ibmq_qasm_simulator') 
 
     else:
-        raise Exception('InvalidExpMode')
+        raise ValueError('Invalid experiment mode')
 
-    if verbose:
-        print('Using backend:', backend)
-        print('Job started.')
-    job = qk.execute(qc, backend=backend, shots=shots)
-    if verbose:
-        qk.tools.monitor.job_monitor(job)
-        print('done')
-    result = job.result()
-    result_count = result.get_counts()
+    with open(f'log_expdata_{neatfilename}.log', 'a') as f:
+        if loopexp > 1:
+            f.write('Loop job start:\n')
 
-    if printresult:
-        print('Result:', result_count)
-        qk.visualization.plot_histogram(result_count).savefig('exp_result.svg')
-        if accuracy_func != None:
-            print('Accuracy:', accuracy_func(result_count))
+        for i in range(1, loopexp+1):
 
-    # sort result
-    bitlen = qc.cregs[0].size
-    result_list = [('{b:0{l}b}'.format(b=i, l=bitlen), 
-        result_count.get('{b:0{l}b}'.format(b=i, l=bitlen), 0)) for i in range(2**bitlen)]
-    
-    if verbose:
-        print('writing log')
-    with open('exp_data.log', 'a') as f:
-        f.write('\n\n\n')
-        f.write('Record start\n')
-        f.write('file: '+os.path.basename(__file__)+'\n')
-        f.write('Time: '+time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())+'\n')
-        f.write('Backend: '+backend._configuration.backend_name+'\n')
-        f.write('Qubits: '+str(backend._configuration.n_qubits)+'\n')
-        f.write('Basis gates: '+', '.join(backend._configuration.basis_gates)+'\n')
-        f.write('Shots: '+str(shots)+'\n')
-        f.write('Max shots: '+str(backend._configuration.max_shots)+'\n')
-        f.write('creg size: '+str(qc.cregs[0].size)+'\n')
-        f.write('qreg size: '+str(qc.qregs[0].size)+'\n')
-        f.write('\n')
-        for b, c in result_list:
-            f.write(b+': '+str(c)+'\n')
-        f.write('\n')
-        f.write('Record end\n')
-        f.write('\n\n\n')
+            if loopexp > 1:
+                print(f'    Loop {i}:')
 
+            try:
+                if verbose:
+                    print(indent+'Using backend:', _backend)
+                    print(indent+f'Job {i} started.')
+                job = qk.execute(qc, backend=_backend, shots=shots, initial_layout=layout,
+                        optimization_level=optimize)
+                if verbose:
+                    qk.tools.monitor.job_monitor(job)
+                    print(indent+'done')
+                result = job.result()
+                result_count = result.get_counts()
+
+                if printresult and (loopexp==1):
+                    print(indent+'Result:', result_count)
+                    _title = 'file: {f}, backend: {be}, qreg size: {qs}, shots:{sh}'.format(
+                            f=__main__.__file__, be=_backend._configuration.backend_name,
+                            qs=qc.qregs[0].size, sh=shots)
+                    if note != None:
+                        _title += f' {note}'
+
+                    figname =  f'./results/{shorttime}_expresult_{neatfilename}'
+                    if note != None:
+                        figname += f'_{note}'
+                    qk.visualization.plot_histogram(result_count, title=_title).savefig(
+                            f'{figname}.svg')
+                    if accuracy_func != None:
+                        print(indent+'Accuracy:', accuracy_func(result_count))
+
+                # sort result
+                bitlen = qc.cregs[0].size
+                result_list = [('{b:0{l}b}'.format(b=i, l=bitlen), 
+                    result_count.get('{b:0{l}b}'.format(b=i, l=bitlen), 0)) for i in range(2**bitlen)]
+                
+                if verbose:
+                    print(indent+'writing log')
+                    f.write(f'{indent}\n')
+                    if loopexp == 1:
+                        f.write(indent+'Record start\n')
+                    else:
+                        f.write(indent+f'Record start (partial job {i}/{loopexp})\n')
+                    f.write(indent+'file: '+__main__.__file__+'\n')
+                    f.write(indent+'Time stamp: '+time.strftime(
+                        "%Y-%m-%d %H:%M:%S",time.localtime())+'\n')
+                    if note != None:
+                        f.write(f'Note: {note}\n')
+                    f.write(indent+'Backend: '+_backend._configuration.backend_name+'\n')
+                    f.write(indent+'Qubits: '+str(_backend._configuration.n_qubits)+'\n')
+                    f.write(indent+'Basis gates: '+', '.join(
+                        _backend._configuration.basis_gates)+'\n')
+                    f.write(indent+'Shots: '+str(shots)+'\n')
+                    f.write(indent+'Max shots: '+str(_backend._configuration.max_shots)+'\n')
+                    f.write(indent+'creg size: '+str(qc.cregs[0].size)+'\n')
+                    f.write(indent+'qreg size: '+str(qc.qregs[0].size)+'\n')
+                    f.write(f'{indent}\n')
+                    for b, c in result_list:
+                        f.write(indent+b+': '+str(c)+'\n')
+                    f.write(f'{indent}\n')
+                    f.write(indent+'Record end\n')
+                    f.write(f'{indent}\n')
+
+                if loopexp > 1:
+                    for key in result_count:
+                        overall_result[key] = overall_result.get(key, 0) + result_count[key]
+
+            except Exception as e:
+                print(indent+'Job {i} failed.')
+                print(indent+str(e))
+                f.write(indent+'Job {i} failed.')
+                f.write(indent+str(e))
+
+        if loopexp > 1:
+            if printresult:
+                print('Result:', overall_result)
+                qk.visualization.plot_histogram(result_count).savefig(
+                        f'./results/{shorttime}_expresult_{neatfilename}.svg')
+                if accuracy_func != None:
+                    print(indent+'Accuracy:', accuracy_func(overall_result))
+            if verbose:
+                print('writing log')
+
+            bitlen = qc.cregs[0].size
+            overall_result_list = [('{b:0{l}b}'.format(b=i, l=bitlen), 
+                overall_result.get(
+                    '{b:0{l}b}'.format(b=i, l=bitlen), 0)) for i in range(2**bitlen)]
+
+            f.write('\n')
+            f.write('Overall record start\n')
+            f.write('file: '+__main__.__file__+'\n')
+            f.write('Time start: '+timestart+'\n')
+            f.write('Time end: '+time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())+'\n')
+            f.write('Backend: '+_backend._configuration.backend_name+'\n')
+            f.write('Qubits: '+str(_backend._configuration.n_qubits)+'\n')
+            f.write('Basis gates: '+', '.join(_backend._configuration.basis_gates)+'\n')
+            f.write(f'Loop: {loopexp}\n')
+            f.write('Total shots: '+str(shots*loopexp)+'\n')
+            f.write('Max shots: '+str(_backend._configuration.max_shots)+'\n')
+            f.write('creg size: '+str(qc.cregs[0].size)+'\n')
+            f.write('qreg size: '+str(qc.qregs[0].size)+'\n')
+            f.write('\n')
+            for b, c in overall_result_list:
+                f.write(b+': '+str(c)+'\n')
+            f.write('\n')
+            f.write('Overall record end\n')
+            f.write('\n')
     
     if verbose:
         print('returning result')

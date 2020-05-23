@@ -133,4 +133,4 @@ def demonstrate_adder(a, b, mode='sim'):
 
 
 if __name__ == "__main__":
-    demonstrate_adder(5, 7, mode='sim')
+    demonstrate_adder(1, 1, mode='exp')

@@ -1,7 +1,7 @@
 import qiskit as qk
 import math
 
-def qft(n):
+def qft(n, draw=False):
     # the upper bit is the MSB
     qreg = qk.QuantumRegister(n)
     qc = qk.QuantumCircuit(qreg)
@@ -11,7 +11,8 @@ def qft(n):
             qc.cu1(2*math.pi/(2**j), i+j-1, i)
         # qc.barrier()
     # qc.draw(output='mpl')
-    # plt.show()
+    if draw:
+        print(qc)
     gate = qc.to_gate()
     gate.name = 'QFT'
 

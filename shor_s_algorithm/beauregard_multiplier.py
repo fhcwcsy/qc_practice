@@ -26,6 +26,8 @@ def cmult_a_mod_N(bitlen, a, N):
 
     qc.append(qft_gate.inverse(), qargs=qreg[b_msb:ancilla])
 
+    print(qc)
+
     gate = qc.to_gate()
     gate.name = f'cmult{a}mod{N}'
     
@@ -47,6 +49,8 @@ def cu_a(bitlen, a, N):
         qc.cswap(0, i+1, bitlen+i+1)
 
     qc.append(cmultainv.inverse(), qargs=qreg)
+
+    print(qc)
 
     gate = qc.to_gate()
     gate.name = f'cu{a}mod{N}'

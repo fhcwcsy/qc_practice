@@ -1,0 +1,589 @@
+Loop job start:
+    |   
+    |   Record start (partial job 1/2)
+    |   file: ./main.py
+    |   Time stamp: 2020-05-16 17:12:11
+    |   Backend: ibmq_cambridge
+    |   Qubits: 28
+    |   Basis gates: u1, u2, u3, cx, id
+    |   Shots: 8192
+    |   Max shots: 8192
+    |   creg size: 3
+    |   qreg size: 7
+    |   
+    |   000: 1084
+    |   001: 1177
+    |   010: 776
+    |   011: 906
+    |   100: 1043
+    |   101: 1189
+    |   110: 923
+    |   111: 1094
+    |   
+    |   Record end
+    |   
+    |   
+    |   Record start (partial job 2/2)
+    |   file: ./main.py
+    |   Time stamp: 2020-05-16 17:14:30
+    |   Backend: ibmq_cambridge
+    |   Qubits: 28
+    |   Basis gates: u1, u2, u3, cx, id
+    |   Shots: 8192
+    |   Max shots: 8192
+    |   creg size: 3
+    |   qreg size: 7
+    |   
+    |   000: 870
+    |   001: 1059
+    |   010: 837
+    |   011: 965
+    |   100: 1167
+    |   101: 1157
+    |   110: 1187
+    |   111: 950
+    |   
+    |   Record end
+    |   
+
+Overall record start
+file: ./main.py
+Time start: 2020-05-16 17:10:28
+Time end: 2020-05-16 17:14:30
+Backend: ibmq_cambridge
+Qubits: 28
+Basis gates: u1, u2, u3, cx, id
+Loop: 2
+Total shots: 16384
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 1954
+001: 2236
+010: 1613
+011: 1871
+100: 2210
+101: 2346
+110: 2110
+111: 2044
+
+Overall record end
+
+Loop job start:
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-16 21:24:51
+Backend: ibmq_16_melbourne
+Qubits: 15
+Basis gates: id, u1, u2, u3, cx
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 2358
+001: 327
+010: 1594
+011: 314
+100: 1828
+101: 233
+110: 1294
+111: 244
+
+Record end
+
+Loop job start:
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-16 21:45:38
+Backend: ibmq_16_melbourne
+Qubits: 15
+Basis gates: id, u1, u2, u3, cx
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 2437
+001: 141
+010: 1808
+011: 102
+100: 1891
+101: 146
+110: 1583
+111: 84
+
+Record end
+
+Loop job start:
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-16 21:53:19
+Backend: ibmq_almaden
+Qubits: 20
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 2162
+001: 321
+010: 1330
+011: 209
+100: 2121
+101: 323
+110: 1519
+111: 207
+
+Record end
+
+Loop job start:
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-16 21:57:26
+Backend: ibmq_cambridge
+Qubits: 28
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 1518
+001: 926
+010: 1199
+011: 636
+100: 1312
+101: 738
+110: 1217
+111: 646
+
+Record end
+
+Loop job start:
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-19 14:14:24
+Backend: ibmq_almaden
+Qubits: 20
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 2570
+001: 90
+010: 1613
+011: 74
+100: 2245
+101: 104
+110: 1421
+111: 75
+
+Record end
+
+Loop job start:
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-19 14:19:00
+Backend: ibmq_16_melbourne
+Qubits: 15
+Basis gates: id, u1, u2, u3, cx
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 1488
+001: 556
+010: 1634
+011: 577
+100: 1572
+101: 490
+110: 1422
+111: 453
+
+Record end
+
+Job {i} failed.name '_configuration' is not defined
+Record start
+file: ./main.py
+Time stamp: 2020-05-19 16:42:36
+Backend: ibmq_rochester
+Qubits: 53
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 1303
+001: 786
+010: 1190
+011: 711
+100: 1307
+101: 748
+110: 1386
+111: 761
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-19 16:45:39
+Backend: ibmq_qasm_simulator
+Qubits: 32
+Basis gates: u1, u2, u3, cx, cz, id, x, y, z, h, s, sdg, t, tdg, ccx, swap, unitary, initialize, kraus
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 2068
+001: 0
+010: 2043
+011: 0
+100: 2043
+101: 0
+110: 2038
+111: 0
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-19 16:47:08
+Backend: ibmq_qasm_simulator
+Qubits: 32
+Basis gates: u1, u2, u3, cx, cz, id, x, y, z, h, s, sdg, t, tdg, ccx, swap, unitary, initialize, kraus
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 2080
+001: 0
+010: 2061
+011: 0
+100: 1928
+101: 0
+110: 2123
+111: 0
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-19 21:26:53
+Backend: ibmq_cambridge
+Qubits: 28
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 2126
+001: 370
+010: 1444
+011: 271
+100: 1841
+101: 310
+110: 1523
+111: 307
+
+Record end
+
+Job {i} failed."'525 Server Error:  for url: https://api-qcon.quantum-computing.ibm.com/api/Network/ibm-q-hub-ntu/Groups/ntu-internal/Projects/default/Jobs/5ec3df714c39180012fd7971/status'"
+Record start
+file: main.py
+Time stamp: 2020-05-19 22:30:44
+Backend: ibmq_16_melbourne
+Qubits: 15
+Basis gates: id, u1, u2, u3, cx
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 1680
+001: 357
+010: 2080
+011: 438
+100: 1449
+101: 289
+110: 1563
+111: 336
+
+Record end
+
+
+Record start
+file: main.py
+Time stamp: 2020-05-19 23:09:38
+Backend: ibmq_rochester
+Qubits: 53
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 1659
+001: 1011
+010: 1248
+011: 761
+100: 1238
+101: 632
+110: 1036
+111: 607
+
+Record end
+
+
+Record start
+file: main.py
+Time stamp: 2020-05-19 23:18:27
+Backend: ibmq_rochester
+Qubits: 53
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 2093
+001: 802
+010: 675
+011: 421
+100: 2370
+101: 610
+110: 867
+111: 354
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-20 00:03:02
+Backend: ibmq_cambridge
+Qubits: 28
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 1764
+001: 496
+010: 1415
+011: 426
+100: 1682
+101: 563
+110: 1416
+111: 430
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-20 00:18:26
+Backend: ibmq_rochester
+Qubits: 53
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 1666
+001: 519
+010: 1538
+011: 623
+100: 1452
+101: 573
+110: 1300
+111: 521
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-20 00:20:40
+Backend: ibmq_cambridge
+Qubits: 28
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 2041
+001: 449
+010: 1442
+011: 310
+100: 1749
+101: 424
+110: 1475
+111: 302
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-20 00:22:20
+Backend: ibmq_almaden
+Qubits: 20
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 1874
+001: 403
+010: 1676
+011: 313
+100: 1721
+101: 351
+110: 1542
+111: 312
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-20 00:23:12
+Backend: ibmq_paris
+Qubits: 27
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 2536
+001: 99
+010: 1823
+011: 75
+100: 2002
+101: 94
+110: 1504
+111: 59
+
+Record end
+
+Job {i} failed."'520 Server Error:  for url: https://api-qcon.quantum-computing.ibm.com/api/Network/ibm-q-hub-ntu/Groups/ntu-internal/Projects/default/Jobs/5ec4075ee9fa9900132bbe10/status'"
+Record start
+file: ./main.py
+Time stamp: 2020-05-20 00:47:32
+Note: optimize=0
+Backend: ibmq_cambridge
+Qubits: 28
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 1798
+001: 359
+010: 1995
+011: 405
+100: 806
+101: 1003
+110: 820
+111: 1006
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-20 00:48:58
+Note: optimize=1
+Backend: ibmq_cambridge
+Qubits: 28
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 2052
+001: 538
+010: 1437
+011: 365
+100: 1716
+101: 400
+110: 1333
+111: 351
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-20 00:50:27
+Note: optimize=2
+Backend: ibmq_cambridge
+Qubits: 28
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 1757
+001: 679
+010: 1311
+011: 521
+100: 1432
+101: 739
+110: 1312
+111: 441
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-20 00:51:58
+Note: optimize=3
+Backend: ibmq_cambridge
+Qubits: 28
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 1038
+001: 1070
+010: 942
+011: 836
+100: 1089
+101: 1241
+110: 1017
+111: 959
+
+Record end
+
+Job {i} failed."'525 Server Error:  for url: https://api-qcon.quantum-computing.ibm.com/api/Network/ibm-q-hub-ntu/Groups/ntu-internal/Projects/default/Jobs/5ec41082fdb6290012af5607/status'"

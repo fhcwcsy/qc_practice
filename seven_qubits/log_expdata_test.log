@@ -1,0 +1,72 @@
+Loop job start:
+    |   
+    |   Record start (partial job 1/2)
+    |   file: ./test.py
+    |   Time stamp: 2020-05-16 17:08:52
+    |   Backend: ibmq_qasm_simulator
+    |   Qubits: 32
+    |   Basis gates: u1, u2, u3, cx, cz, id, x, y, z, h, s, sdg, t, tdg, ccx, swap, unitary, initialize, kraus
+    |   Shots: 8192
+    |   Max shots: 8192
+    |   creg size: 3
+    |   qreg size: 3
+    |   
+    |   000: 0
+    |   001: 0
+    |   010: 0
+    |   011: 0
+    |   100: 0
+    |   101: 0
+    |   110: 0
+    |   111: 8192
+    |   
+    |   Record end
+    |   
+    |   
+    |   Record start (partial job 2/2)
+    |   file: ./test.py
+    |   Time stamp: 2020-05-16 17:09:03
+    |   Backend: ibmq_qasm_simulator
+    |   Qubits: 32
+    |   Basis gates: u1, u2, u3, cx, cz, id, x, y, z, h, s, sdg, t, tdg, ccx, swap, unitary, initialize, kraus
+    |   Shots: 8192
+    |   Max shots: 8192
+    |   creg size: 3
+    |   qreg size: 3
+    |   
+    |   000: 0
+    |   001: 0
+    |   010: 0
+    |   011: 0
+    |   100: 0
+    |   101: 0
+    |   110: 0
+    |   111: 8192
+    |   
+    |   Record end
+    |   
+
+Overall record start
+file: ./test.py
+Time start: 2020-05-16 17:08:30
+Time end: 2020-05-16 17:09:03
+Backend: ibmq_qasm_simulator
+Qubits: 32
+Basis gates: u1, u2, u3, cx, cz, id, x, y, z, h, s, sdg, t, tdg, ccx, swap, unitary, initialize, kraus
+Loop: 2
+Total shots: 16384
+Max shots: 8192
+creg size: 3
+qreg size: 3
+
+000: 0
+001: 0
+010: 0
+011: 0
+100: 0
+101: 0
+110: 0
+111: 16384
+
+Overall record end
+

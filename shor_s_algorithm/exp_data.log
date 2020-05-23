@@ -1402,3 +1402,61 @@ Record end
 
 
 
+
+
+
+Record start
+file: simulation.py
+Time: 2020-04-06 09:57:31
+Backend: ibmq_almaden
+Qubits: 20
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 4
+qreg size: 8
+
+0000: 641
+0001: 525
+0010: 540
+0011: 457
+0100: 582
+0101: 514
+0110: 513
+0111: 454
+1000: 666
+1001: 570
+1010: 521
+1011: 419
+1100: 543
+1101: 447
+1110: 436
+1111: 364
+
+Record end
+
+
+
+
+
+
+Record start
+file: simulation.py
+Time: 2020-04-06 10:03:10
+Backend: ibmq_almaden
+Qubits: 20
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 2
+qreg size: 4
+
+00: 1994
+01: 639
+10: 5155
+11: 404
+
+Record end
+
+
+

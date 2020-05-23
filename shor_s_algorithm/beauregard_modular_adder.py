@@ -67,7 +67,7 @@ def demonstrating_cc_phi_add_a_mod_N(a, b, N, control='11', simulation='sim'):
         qc.measure(i+2, bitlen-i-1)
     
     if simulation == 'sim':
-        ans = int(sim.sort_by_prob(sim.local_sim(qc, printresult=False))[0][0], 2)
+        ans = int(sim.sort_by_prob(sim.local_sim(qc, printresult=True))[0][0], 2)
         print(f'{a}+{b} mod {N} = {ans}, control: {control}')
         print('actual ans:', (a+b)%N)
     elif simulation == 'exp':
@@ -81,7 +81,7 @@ def demonstrating_cc_phi_add_a_mod_N(a, b, N, control='11', simulation='sim'):
 
 
 if __name__ == "__main__":
-    demonstrating_cc_phi_add_a_mod_N(8, 5, 9, control='11', simulation='sim')
+    demonstrating_cc_phi_add_a_mod_N(8, 5, 9, control='10', simulation='sim')
     # cc_phi_add_mod_N(4, 2, 5)
 
 
