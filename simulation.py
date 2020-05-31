@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import os
 import __main__
 
-def local_sim(qc, figname='local_sim.svg', printresult=True, shots=1024):
+def local_sim(qc, figname='local_sim.pdf', printresult=True, shots=1024):
     print('Local simulation started.')
     backend = qk.Aer.get_backend('qasm_simulator') 
     job_sim = qk.execute(qc, backend,shots=shots)
@@ -14,7 +14,7 @@ def local_sim(qc, figname='local_sim.svg', printresult=True, shots=1024):
 
     if printresult:
         print('Simulation result:', measurement_result)
-        qk.visualization.plot_histogram(measurement_result).savefig(figname)
+        qk.visualization.plot_histogram(measurement_result).savefig('./results'+figname)
         print('Simulation plotted and saved locally.')
 
     return measurement_result
@@ -97,7 +97,7 @@ def quantumComputerExp(qc, backend=None, shots=8192,
                     if note != None:
                         figname += f'_{note}'
                     qk.visualization.plot_histogram(result_count, title=_title).savefig(
-                            f'{figname}.svg')
+                            f'{figname}.pdf')
                     if accuracy_func != None:
                         print(indent+'Accuracy:', accuracy_func(result_count))
 
@@ -147,7 +147,7 @@ def quantumComputerExp(qc, backend=None, shots=8192,
             if printresult:
                 print('Result:', overall_result)
                 qk.visualization.plot_histogram(result_count).savefig(
-                        f'./results/{shorttime}_expresult_{neatfilename}.svg')
+                        f'./results/{shorttime}_expresult_{neatfilename}.pdf')
                 if accuracy_func != None:
                     print(indent+'Accuracy:', accuracy_func(overall_result))
             if verbose:

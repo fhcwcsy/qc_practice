@@ -5,13 +5,14 @@ import qft
 sys.path.append('../')
 import simulation as sim
 
-def adder(a, b):
+def adder(a, b, custombitlen=None):
     bitlen = math.ceil(math.log2(max(a, b)+1))+1
 
     a_bin = '{n:0{bit}b}'.format(n=a, bit=bitlen)
     b_bin = '{n:0{bit}b}'.format(n=b, bit=bitlen)
+    qsize = 2*bitlen if custombitlen==None else custombitlen
 
-    qreg = qk.QuantumRegister(2*bitlen)
+    qreg = qk.QuantumRegister(qsize)
     creg = qk.ClassicalRegister(bitlen)
     qc = qk.QuantumCircuit(qreg, creg)
 
@@ -42,14 +43,18 @@ def adder(a, b):
     # parallel version
     for i in range(1, bitlen+1):
         for j in range(bitlen-i+1):
-            qc.cu1(2*math.pi/(2**i), i+j-1, bitlen+j)
+            if a_bin[i+j-1] == '1':
+                qc.cu1(2*math.pi/(2**i), i+j-1, bitlen+j)
         qc.barrier()
 
     # second QFT
     qc.append(qft_dagger, qargs=qreg[bitlen : 2*bitlen])
 
-    for i in range(bitlen):
-        qc.measure(i+bitlen, bitlen-i-1)
+    if custombitlen == None:
+        for i in range(bitlen):
+            qc.measure(i+bitlen, bitlen-i-1)
+    else:
+        qc.measure_all()
 
     return qc
 

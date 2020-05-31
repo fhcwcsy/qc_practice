@@ -587,3 +587,380 @@ qreg size: 7
 Record end
 
 Job {i} failed."'525 Server Error:  for url: https://api-qcon.quantum-computing.ibm.com/api/Network/ibm-q-hub-ntu/Groups/ntu-internal/Projects/default/Jobs/5ec41082fdb6290012af5607/status'"
+Record start
+file: ./main.py
+Time stamp: 2020-05-24 15:30:58
+Backend: ibmq_almaden
+Qubits: 20
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 510
+001: 506
+010: 889
+011: 1285
+100: 802
+101: 1054
+110: 1422
+111: 1724
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-24 15:32:09
+Backend: ibmq_almaden
+Qubits: 20
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 926
+001: 183
+010: 1520
+011: 252
+100: 1775
+101: 285
+110: 2776
+111: 475
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-24 15:33:18
+Backend: ibmq_almaden
+Qubits: 20
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 1252
+001: 1126
+010: 2674
+011: 2443
+100: 129
+101: 118
+110: 245
+111: 205
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-24 16:13:30
+Backend: ibmq_paris
+Qubits: 27
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 3725
+001: 271
+010: 403
+011: 130
+100: 3019
+101: 228
+110: 275
+111: 141
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-24 16:15:31
+Backend: ibmq_paris
+Qubits: 27
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 6
+001: 3851
+010: 7
+011: 4328
+100: 0
+101: 0
+110: 0
+111: 0
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-24 16:17:58
+Backend: ibmq_paris
+Qubits: 27
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 8157
+001: 0
+010: 35
+011: 0
+100: 0
+101: 0
+110: 0
+111: 0
+
+Record end
+
+Job {i} failed.'Unable to retrieve job result. Job has failed. Use job.error_message() to get more details.'
+Record start
+file: ./main.py
+Time stamp: 2020-05-24 17:23:27
+Note: a=11
+Backend: ibmq_paris
+Qubits: 27
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 0
+001: 0
+010: 0
+011: 0
+100: 7149
+101: 1043
+110: 0
+111: 0
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-24 22:46:13
+Note: a=11
+Backend: ibmq_almaden
+Qubits: 20
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 795
+001: 1793
+010: 278
+011: 609
+100: 985
+101: 2040
+110: 553
+111: 1139
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-24 22:47:22
+Note: a=7
+Backend: ibmq_almaden
+Qubits: 20
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 18
+001: 21
+010: 33
+011: 25
+100: 1527
+101: 1397
+110: 2684
+111: 2487
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-24 22:48:08
+Note: a=2
+Backend: ibmq_almaden
+Qubits: 20
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 881
+001: 790
+010: 1336
+011: 1156
+100: 875
+101: 798
+110: 1202
+111: 1154
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-24 23:08:20
+Note: a=11
+Backend: ibmq_rochester
+Qubits: 53
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 2860
+001: 422
+010: 1080
+011: 285
+100: 1987
+101: 322
+110: 940
+111: 296
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-24 23:16:10
+Note: a=7
+Backend: ibmq_rochester
+Qubits: 53
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 1518
+001: 838
+010: 1243
+011: 702
+100: 1232
+101: 693
+110: 1255
+111: 711
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-24 23:26:16
+Note: a=2
+Backend: ibmq_rochester
+Qubits: 53
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 1614
+001: 556
+010: 1408
+011: 545
+100: 1431
+101: 648
+110: 1371
+111: 619
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-25 01:41:43
+Note: a=11
+Backend: ibmq_rochester
+Qubits: 53
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 2758
+001: 540
+010: 674
+011: 279
+100: 2470
+101: 511
+110: 673
+111: 287
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-25 01:50:04
+Note: a=7
+Backend: ibmq_rochester
+Qubits: 53
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 1569
+001: 535
+010: 1459
+011: 455
+100: 1611
+101: 624
+110: 1351
+111: 588
+
+Record end
+
+
+Record start
+file: ./main.py
+Time stamp: 2020-05-25 01:59:31
+Note: a=2
+Backend: ibmq_rochester
+Qubits: 53
+Basis gates: u1, u2, u3, cx, id
+Shots: 8192
+Max shots: 8192
+creg size: 3
+qreg size: 7
+
+000: 1632
+001: 625
+010: 1422
+011: 550
+100: 1492
+101: 607
+110: 1298
+111: 566
+
+Record end
+

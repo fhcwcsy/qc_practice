@@ -19,7 +19,7 @@ from qiskit.ignis.mitigation.measurement import (complete_meas_cal, tensored_mea
 if __name__ == "__main__":
     print('program started')
 
-    bename = 'ibmq_rochester'
+    bename = 'ibmq_cambridge'
 
     # account setup
 
@@ -31,13 +31,13 @@ if __name__ == "__main__":
     # account setup finished
 
     qreg = qk.QuantumRegister(7)
-    layout = {qreg[0]: 12, 
-              qreg[1]: 11,
+    layout = {qreg[0]: 4, 
+              qreg[1]: 6,
               qreg[2]: 13, 
-              qreg[3]: 17, 
-              qreg[4]: 14, 
-              qreg[5]: 10, 
-              qreg[6]: 6}
+              qreg[3]: 12, 
+              qreg[4]: 11, 
+              qreg[5]: 17, 
+              qreg[6]: 23}
      
 
     ########## mitigation circuit ##########
@@ -112,6 +112,6 @@ if __name__ == "__main__":
         qk.tools.visualization.plot_histogram(
                 [raw_counts, mitigated_counts], legend=['raw', 'mitigated'], 
                 title=f'a = {qc.name}')
-        plt.savefig(f'./results/error_mitigation_{qc.name}_rochester.svg')
+        plt.savefig(f'./results/error_mitigation_{qc.name}_cambridge2.svg')
         plt.show()
     

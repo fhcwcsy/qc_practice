@@ -26,7 +26,7 @@ def cmult_a_mod_N(bitlen, a, N):
 
     qc.append(qft_gate.inverse(), qargs=qreg[b_msb:ancilla])
 
-    print(qc)
+    # print(qc)
 
     gate = qc.to_gate()
     gate.name = f'cmult{a}mod{N}'
@@ -50,7 +50,7 @@ def cu_a(bitlen, a, N):
 
     qc.append(cmultainv.inverse(), qargs=qreg)
 
-    print(qc)
+    # print(qc)
 
     gate = qc.to_gate()
     gate.name = f'cu{a}mod{N}'
@@ -82,7 +82,7 @@ def demonstrate_cua(x, a, N, c='1', simulation='sim'):
     # print(qc.draw())
     if simulation == 'sim':
         full_result = sim.sort_by_prob(
-                sim.local_sim(qc, figname='cua_circuit.svg', printresult=False)
+                sim.local_sim(qc, printresult=False)
                 )
         # print(full_result)
         top_result = full_result[0][0]
